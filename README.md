@@ -17,7 +17,21 @@ docker run -d \
 
 ### docker compose
 
-Edit `docker-compose.yml` with your target, then:
+Set environment variables (via shell, CI, or a `.env` file) then run:
+
+```sh
+TARGET_HOST=your-v2ray-server.example.com TARGET_PORT=443 LISTEN_PORT=443 docker compose up -d
+```
+
+Or create a `.env` file in the project root:
+
+```env
+TARGET_HOST=your-v2ray-server.example.com
+TARGET_PORT=443
+LISTEN_PORT=443
+```
+
+Then:
 
 ```sh
 docker compose up -d
@@ -28,7 +42,7 @@ docker compose up -d
 | Variable | Required | Default | Description |
 |---|---|---|---|
 | `TARGET_HOST` | yes | — | Upstream host to forward connections to |
-| `TARGET_PORT` | no | same as `LISTEN_PORT` | Upstream port |
+| `TARGET_PORT` | no | `LISTEN_PORT` or `8080` | Upstream port |
 | `LISTEN_PORT` | no | `8080` | Port the relay listens on inside the container |
 
 ## Build
